@@ -1,13 +1,24 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 using Parcial_1.Data;
+using Parcial_1.Context;
+using Parcial_1.BLL;
+using Radzen;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddDbContext<Contexto>(option => option.UseSqlite(builder.Configuration.GetConnectionString("DBConnection")));
+
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<IngresosBLL>();
+
+
 
 var app = builder.Build();
 
