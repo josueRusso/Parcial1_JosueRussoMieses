@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.ComponentModel.DataAnnotations;
 using Parcial_1.Context;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using System.Linq.Expressions;
 
 namespace Parcial_1.BLL
 {
@@ -53,6 +54,11 @@ namespace Parcial_1.BLL
         public Ingresos? Buscar(int IngresosId)
         {
             return _contexto.Ingresos.AsNoTracking().FirstOrDefault(i => i.IngresoId == IngresosId);
+        }
+
+        public List<Ingresos> GetLis(Expression<Func<Ingresos, bool>> expression)
+        {
+            return _contexto.Ingresos.Where(expression).AsNoTracking().ToList();
         }
         
     }

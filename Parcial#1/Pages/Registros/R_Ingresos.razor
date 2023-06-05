@@ -1,9 +1,37 @@
-﻿
+﻿@page "/RegistroIngresos"
 @inject IngresosBLL IngresosBLL
 
+<EditForm Model="Ingresos" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator
+</EditForm>
 
-<h3>R_Ingresos</h3>
 
 @code {
+    public Ingresos Ingresos { get; set; } = new Ingresos();
 
+    public void Buscar()
+    {
+        var buscar = IngresosBLL.Buscar(Ingresos.IngresoId);
+        if (buscar != null)
+            Ingresos = buscar;
+    }
+
+    public void Nuevo()
+    {
+        this.Ingresos = new Ingresos();
+    }
+
+    public void Guardar()
+    {
+        var guardar = IngresosBLL.Guardar(this.Ingresos);
+        if (guardar)
+            Nuevo();
+    }
+
+    public void Eliminar()
+    {
+        Buscar();
+        if (IngresosBLL.Eliminar(this.Ingresos))
+            Nuevo();
+    }
 }
