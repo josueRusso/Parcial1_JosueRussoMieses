@@ -60,6 +60,14 @@ namespace Parcial_1.BLL
         {
             return _contexto.Ingresos.Where(expression).AsNoTracking().ToList();
         }
-        
+
+        public bool Validar(int  ingresoId)
+        {
+
+            bool confirmar = false;
+
+            confirmar = _contexto.Ingresos.Any(e => e.IngresoId == ingresoId);
+            return confirmar;
+        }
     }
 }
