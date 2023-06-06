@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.ComponentModel.DataAnnotations;
 using Parcial_1.Context;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using System.Linq.Expressions;
+
 
 namespace Parcial_1.BLL
 {
